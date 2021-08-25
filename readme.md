@@ -1,7 +1,7 @@
 jdk-8
 gradle
 
-
+a
 https://github.com/Microsoft/malmo/releases
 
 run malmo
