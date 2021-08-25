@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <About>
+    <Summary>Cliff walking mission based on Sutton and Barto.</Summary>
+  </About>
+
+  <ServerSection>
+    <ServerInitialConditions>
+        <Time><StartTime>1</StartTime></Time>
+    </ServerInitialConditions>
+    <ServerHandlers>
+      <FlatWorldGenerator generatorString="3;7,220*1,5*3,2;3;,biome_1"/>
+      <DrawingDecorator>
+        <!-- coordinates for cuboid are inclusive -->
+	<DrawCuboid x1="-16" y1="226" z1="-16" x2="16" y2="227" z2="16" type="sandstone" />         
+	<DrawCuboid x1="-15" y1="227" z1="-15" x2="15" y2="227" z2="15" type="air" />            <!-- limits of our arena -->
+        <!-- <DrawCuboid x1="-7" y1="226" z1="-7" x2="7" y2="226" z2="7" type="lava" /> -->           <!-- lava floor -->
+        <!-- <DrawCuboid x1="1"  y1="226" z1="1"  x2="3" y2="226" z2="7" type="sandstone" /> -->      <!-- floor of the arena -->
+        <DrawBlock x="4"  y="226" z="1" type="cobblestone" />    <!-- the starting marker -->
+        <DrawBlock x="4"  y="226" z="7" type="lapis_block" />     <!-- the destination marker -->
+	<DrawBlock x="-5" y="227" z="1" type="torch"/> <!-- source of light-->
+	<DrawItem x="0"  y="227" z="5" type="apple" />
+      </DrawingDecorator>
+      <ServerQuitFromTimeUp timeLimitMs="100000"/>
+      <ServerQuitWhenAnyAgentFinishes/>
+    </ServerHandlers>
+  </ServerSection>
+
+  <AgentSection mode="Survival">
+    <Name>Arthur Abdel Simpson</Name>
+    <AgentStart>
+      <Placement x="4.5" y="227.0" z="1.5" pitch="30" yaw="0"/>
+    </AgentStart>
+    <AgentHandlers>
+      <ContinuousMovementCommands/>
+      <VideoProducer viewpoint='1'>
+      </VideoProducer>
+      <!--<ObservationFromNearbyEntities> 
+		<Range name="nearbyEntities" xrange="10" yrange="1" zrange="10"/>
+	</ObservationFromNearbyEntities> -->
+	<ObservationFromFullInventory flat="false"/>
+	<ObservationFromRay/>
+	<!-- <ObservationFromGrid>
+		<Grid name ="floor5x5">
+			<min x="-2" y="-1" z="-2"/>
+			<max x="2" y="-1" z="2"/>
+		</Grid>
+	</ObservationFromGrid> -->
+	<!-- <ObservationFromRecentCommands/> -->
+	<ObservationFromFullStats/>
+      <RewardForTouchingBlockType>
+        <Block reward="-100.0" type="lava" behaviour="oncePerTimeSpan" cooldownInMs="50"/>
+        <Block reward="100.0" type="lapis_block" behaviour="oncePerTimeSpan" cooldownInMs="50"/>
+      </RewardForTouchingBlockType>
+      <RewardForSendingCommand reward="-1" />
+       <!-- <AgentQuitFromTouchingBlockType> -->
+         <!-- <Block type="emerald_block" /> -->
+        <!-- <Block type="lapis_block" /> -->
+      <!-- <</AgentQuitFromTouchingBlockType>-->
+      <MissionQuitCommands quitDescription="victory!"/>
+    </AgentHandlers>
+  </AgentSection>
+
+</Mission>
