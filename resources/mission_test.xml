@@ -36,7 +36,7 @@
       <ContinuousMovementCommands/>
       <VideoProducer viewpoint='1'>
       </VideoProducer>
-      <!--<ObservationFromNearbyEntities> 
+      <!--<ObservationFromNearbyEntities>
 		<Range name="nearbyEntities" xrange="10" yrange="1" zrange="10"/>
 	</ObservationFromNearbyEntities> -->
 	<ObservationFromFullInventory flat="false"/>

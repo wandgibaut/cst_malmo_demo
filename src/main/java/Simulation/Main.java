@@ -5,6 +5,7 @@
 
 package Simulation;
 
+import agent.main.AgentMind;
 import support.MindView;
 import support.NativeUtils;
 import SoarBridge.SoarBridge;
@@ -48,7 +49,9 @@ public class Main {
             Thread.sleep(3000);
 
             //run malmo and SOAR interpreter
+            AgentMind agentMind = new AgentMind(e);
             e.runSimulation();
+
 
         }
         catch (Exception ex)

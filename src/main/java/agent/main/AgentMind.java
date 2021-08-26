@@ -24,21 +24,25 @@ public class AgentMind extends Mind {
 
         // Declare Memory Objects
         MemoryObject legsMO;
+        MemoryObject legsForwardMO;
         MemoryObject handsMO;
         MemoryObject visionMO;
         MemoryObject innerSenseMO;
         MemoryObject closestAppleMO;
         MemoryObject knownApplesMO;
+        MemoryObject jewelDetectMO;
 
         //Initialize Memory Objects
         legsMO=createMemoryObject("LEGS", "");
+        legsForwardMO=createMemoryObject("LEGS_FORWARD", "");
         handsMO=createMemoryObject("HANDS", "");
         //List<Thing> vision_list = Collections.synchronizedList(new ArrayList<Thing>());
-        visionMO=createMemoryObject("FAKE_VISION_MEMORY","");
+        visionMO=createMemoryObject("FAKE_VISION","");
         InnerSense cis = new InnerSense(env.getCreature());
         innerSenseMO=createMemoryObject("INNER", cis);
         //Thing closestApple = null;
         closestAppleMO=createMemoryObject("CLOSEST_APPLE", "");
+        jewelDetectMO = createMemoryObject("JEWEL_DETECT", "");
         //List<Thing> knownApples = Collections.synchronizedList(new ArrayList<Thing>());
         knownApplesMO=createMemoryObject("KNOWN_APPLES", "");
 
@@ -65,46 +69,46 @@ public class AgentMind extends Mind {
         // Create Actuator Codelets
         LegsAction legs=new LegsAction(env.getCreature());
         legs.addInput(legsMO);
+        legs.addInput(legsForwardMO);
         insertCodelet(legs);
 
         HandsAction hands=new HandsAction(env.getCreature());
         hands.addInput(handsMO);
-        insertCodelet(hands);
+        //insertCodelet(hands);
 
         // Create Perception Codelets
         Codelet ad = new AppleDetector();
         ad.addInput(visionMO);
         ad.addOutput(knownApplesMO);
-        insertCodelet(ad);
+        //insertCodelet(ad);
 
-        JewelDetector closestAppleDetector = new JewelDetector();
-        closestAppleDetector.addInput(knownApplesMO);
-        closestAppleDetector.addInput(innerSenseMO);
-        closestAppleDetector.addOutput(closestAppleMO);
-        insertCodelet(closestAppleDetector);
+        JewelDetector jewelDetector = new JewelDetector();
+        jewelDetector.addInput(visionMO);
+        jewelDetector.addInput(innerSenseMO);
+        jewelDetector.addOutput(jewelDetectMO);
+        insertCodelet(jewelDetector);
 
         // Create Behavior Codelets
-        GoTo goToClosestApple = new GoTo(/*creatureBasicSpeed,reachDistance*/);
-        goToClosestApple.addInput(closestAppleMO);
-        goToClosestApple.addInput(innerSenseMO);
-        goToClosestApple.addOutput(legsMO);
-        insertCodelet(goToClosestApple);
+        GoTo goTo = new GoTo(/*creatureBasicSpeed,reachDistance*/);
+        goTo.addInput(jewelDetectMO);
+        goTo.addOutput(legsForwardMO);
+        insertCodelet(goTo);
 
         EatApple eatApple=new EatApple(/*reachDistance*/);
         eatApple.addInput(closestAppleMO);
         eatApple.addInput(innerSenseMO);
         eatApple.addOutput(handsMO);
         eatApple.addOutput(knownApplesMO);
-        insertCodelet(eatApple);
+        //insertCodelet(eatApple);
 
         Codelet forage=new Forage();
-        forage.addInput(knownApplesMO);
+        forage.addInput(jewelDetectMO);
         forage.addOutput(legsMO);
         insertCodelet(forage);
 
         // sets a time step for running the codelets to avoid heating too much your machine
         for (Codelet c : this.getCodeRack().getAllCodelets())
-            c.setTimeStep(200);
+            c.setTimeStep(50);
 
         // Start Cognitive Cycle
         start();

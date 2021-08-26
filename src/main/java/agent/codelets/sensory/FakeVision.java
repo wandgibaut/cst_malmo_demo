@@ -33,7 +33,7 @@ public class FakeVision extends Codelet {
 
     @Override
     public void accessMemoryObjects() {
-        this.sensoryMemory = this.getOutput("FAKE_VISION_MEMORY");
+        this.sensoryMemory = this.getOutput("FAKE_VISION");
 
         //this.broadcastedActionMO = this.getBroadcast("NEXT_ACTION");
         //this.deathMemory = this.getOutput("DEATH");
