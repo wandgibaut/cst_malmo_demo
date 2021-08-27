@@ -28,4 +28,9 @@ Each run takes about 40 seconds. Also, a Mind Viewer will pop-up where an user c
 
 Note that the first run will take more time, as Malmö loads the environment.
 
+![start](img/start.png)
 
+<br/>
+<br/>
+
+![running](img/running.png)
