@@ -1,17 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Simulation;
 
-import java.util.logging.Logger;
-
-import SoarBridge.SoarBridge;
 import com.microsoft.msr.malmo.AgentHost;
-import support.MindView;
 import tempUtils.Mission;
-
+import java.util.logging.Logger;
 
 /**
  *

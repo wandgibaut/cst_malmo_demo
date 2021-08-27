@@ -6,6 +6,10 @@ import com.google.gson.JsonObject;
 import com.microsoft.msr.malmo.TimestampedStringVector;
 import com.microsoft.msr.malmo.WorldState;
 
+/**
+ *
+ * @author Wandemberg Gibaut
+ */
 public class MalmoUtils {
 
 

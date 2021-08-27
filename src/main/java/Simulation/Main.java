@@ -1,16 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Simulation;
 
 import agent.main.AgentMind;
-import support.MindView;
-import support.NativeUtils;
-import SoarBridge.SoarBridge;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import br.unicamp.cst.util.MindViewer;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -20,7 +13,6 @@ import org.slf4j.LoggerFactory;
 public class Main {
     static
     {
-        //System.setProperty("java.library.path","./libs");
         System.loadLibrary("MalmoJava"); // attempts to load MalmoJava.dll (on Windows) or libMalmoJava.so (on Linux)
     }
 
@@ -36,29 +28,25 @@ public class Main {
         //SilenceLoggers();
         try
         {
-            //NativeUtils.loadFileFromJar("/soar-rules.soar");
-            //String soarRulesPath = "rules/soar-rules.soar";
-
             //Start enviroment data
             Environment e = new Environment(Boolean.FALSE);
-            //SoarBridge soarBridge = new SoarBridge(e,soarRulesPath,false);
-            //MindViewer mv = new MindViewer(soarBridge);
-            //mv.setVisible(true);
 
             // Run Simulation until some criteria was reached
             Thread.sleep(3000);
 
-            //run malmo and SOAR interpreter
+            //run malmo and CST agent
             AgentMind agentMind = new AgentMind(e);
+
+            // Create and Populate MindViewer
+            MindViewer mv = new MindViewer(agentMind, "Arthur Simpson", agentMind.getBehavioralCodelets());
+            mv.setVisible(true);
+
             e.runSimulation();
-
-
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            System.out.println(ex.toString());
-            ex.printStackTrace();
-            logger.severe("Unknown error"+ex);
+            e.printStackTrace();
+            logger.severe("Unknown error"+e);
         }
     }
 
@@ -66,6 +54,5 @@ public class Main {
     {
         Main m = new Main();
     }
-
 
 }

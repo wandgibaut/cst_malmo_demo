@@ -1,18 +1,20 @@
 package tempUtils;
 
-import SoarBridge.SoarBridge;
 import com.google.gson.JsonObject;
 import com.microsoft.msr.malmo.AgentHost;
 import com.microsoft.msr.malmo.MissionRecordSpec;
 import com.microsoft.msr.malmo.MissionSpec;
 import com.microsoft.msr.malmo.WorldState;
-import support.MindView;
-
 import java.io.File;
 import java.util.Random;
 
 import static org.apache.commons.io.FileUtils.readFileToString;
 
+
+/**
+ *
+ * @author Wandemberg Gibaut
+ */
 public class Mission {
 
     private MissionSpec my_mission = new MissionSpec();// = null;
