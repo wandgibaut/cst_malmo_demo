@@ -24,6 +24,8 @@ More info on [Malmö github page](https://github.com/microsoft/malmo)!
 First, you need to run Malmö, as explained [here](https://github.com/Microsoft/malmo/blob/master/Malmo/samples/Python_examples/Tutorial.pdf)
 
 Then you run the program, either the traditional way or through a fatJar. The agent should appear and turn right searching for emeralds on its line of sight (a very specific point) and go toward the jewel, once detected.
-Each run takes about 60 seconds. Also, a Mind Viewer will pop-up where an user can see Memories and Codelets contents and Codelets activation levels.
+Each run takes about 40 seconds. Also, a Mind Viewer will pop-up where an user can see Memories and Codelets contents and Codelets activation levels.
 
-Note that the first run will take more time, as Malmö loads the environment. 
+Note that the first run will take more time, as Malmö loads the environment.
+
+

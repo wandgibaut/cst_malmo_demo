@@ -151,29 +151,6 @@ public class Mission {
 
     }
 
-    private void goToEmerald(AgentHost agentHost){
-        JsonObject observations = MalmoUtils.getPerceptions(agentHost.peekWorldState());
-
-        if(observations != null){
-            if(observations.has("LineOfSight")){
-                JsonObject sight = observations.get("LineOfSight").getAsJsonObject();
-
-                if(sight.get("type").getAsString().equals("emerald")){
-                    agentHost.sendCommand("turn 0.0");
-                    agentHost.sendCommand("move 0.1");
-                }
-            }
-
-            if(observations.has("XPos")) {double Xpos = observations.get("XPos").getAsDouble();
-                double Ypos = observations.get("YPos").getAsDouble();
-
-                System.out.println("Xpos: " + Xpos);
-            }
-
-        }
-
-
-    }
 
 
 
