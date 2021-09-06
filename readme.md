@@ -28,6 +28,14 @@ Each run takes about 40 seconds. Also, a Mind Viewer will pop-up where an user c
 
 Note that the first run will take more time, as Malmö loads the environment.
 
+### Agent diagram
+![start](img/malmo_forager.drawio_2.png)
+
+<br/>
+<br/>
+
+
+### Running example (with mindviewer on the left)
 ![start](img/start.png)
 
 <br/>
